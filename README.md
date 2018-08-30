@@ -1,5 +1,5 @@
 # try_stackexchange_api
-This project is just to try out stackexchange api to read questions and answers
+This project is an android app made just to try out stackexchange api to read questions and answers
 
 ## TODO
 
