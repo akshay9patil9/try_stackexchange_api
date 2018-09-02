@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">StackExchange</string>
+    <string name="app_name">StackOverflow</string>
     <string name="view_more">View More</string>
     <string name="questions_header">Questions</string>
     <string name="question_header">Question</string>
