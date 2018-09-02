@@ -1,6 +1,7 @@
 package com.example.akshay.stackexchange;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -60,13 +61,12 @@ public class AnswersActivity extends AppCompatActivity {
         ImageView avatarView =  questionCard.findViewById(R.id.avatar_view);
         new ImageLoadTask(avatarUrl, avatarView).execute();
 
-//        questionCard.setBackgroundColor(0xFFFAFAFA);
-
-//        TextView questionT = new TextView(getApplicationContext());
-//        questionT.setText("Question - ");
         Button questionSectionTitle = new Button(this);
         questionSectionTitle.setText(R.string.question_header);
         answers_container.addView(questionSectionTitle);
+        Drawable header_bg = getApplicationContext().getResources().getDrawable(R.drawable.header_bg);
+        questionSectionTitle.setBackground(header_bg);
+        questionSectionTitle.setTextColor(0xFFFFFFFF);
         questionCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,6 +102,9 @@ public class AnswersActivity extends AppCompatActivity {
                             else
                                 answerSectionTitle.setText(R.string.answer_header);
                             answers_container.addView(answerSectionTitle);
+                            Drawable header_bg = getApplicationContext().getResources().getDrawable(R.drawable.header_bg);
+                            answerSectionTitle.setBackground(header_bg);
+                            answerSectionTitle.setTextColor(0xFFFFFFFF);
 
 
                             for(int i =0; i< answers.length(); i++){

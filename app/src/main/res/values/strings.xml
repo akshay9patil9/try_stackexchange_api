@@ -6,8 +6,8 @@
     <string name="answer_header">Answers</string>
     <string name="no_answers">No Answers Found!</string>
     <string name="default_username">user</string>
-    <string name="default_view_count">0 views</string>
-    <string name="default_question">this question is loading :)</string>
+    <string name="default_view_count">-</string>
+    <string name="default_question">this did not load :(</string>
 
 
 </resources>

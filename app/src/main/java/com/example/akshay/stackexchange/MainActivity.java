@@ -3,11 +3,13 @@ package com.example.akshay.stackexchange;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.AsyncTask;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.text.Layout;
 import android.util.Log;
 import android.view.View;
@@ -48,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
 
         viewMore = new Button(this);
         viewMore.setText(R.string.view_more);
+        Drawable header_bg = getApplicationContext().getResources().getDrawable(R.drawable.header_bg);
+        viewMore.setBackground(header_bg);
+        viewMore.setTextColor(0xFFFFFFFF);
 
         viewMore.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +61,13 @@ public class MainActivity extends AppCompatActivity {
                 container.removeView(viewMore);
             }
         });
+
+        Button questionSectionTitle = new Button(this);
+        questionSectionTitle.setText(R.string.questions_header);
+        container.addView(questionSectionTitle);
+        questionSectionTitle.setBackground(header_bg);
+        questionSectionTitle.setTextColor(0xFFFFFFFF);
+
 
         getQuestions(getUrl(), container);
 
@@ -119,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
             final String question_body = question.getString("body");
 
             TextView questionTitleView = questionCard.findViewById(R.id.question_tile);
-            questionTitleView.setText(question.getString("title"));
+            questionTitleView.setText(Html.fromHtml(question.getString("title")));
 
             TextView viewCountView = questionCard.findViewById(R.id.view_count_view);
             viewCountView.setText(views+" views");
