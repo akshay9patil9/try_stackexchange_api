@@ -34,10 +34,11 @@ import org.json.JSONObject;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
     Long toDate = System.currentTimeMillis()/1000;
-    Long fromDate = toDate - 24*60*60*1000;;
+    Long fromDate = toDate - 24*60*60;
     Button viewMore = null;
 
 
@@ -129,12 +130,32 @@ public class MainActivity extends AppCompatActivity {
             final String questionId = question.getString("question_id");
             final String views = question.getString("view_count");
             final String question_body = question.getString("body");
+            final Long lastActivityDate = question.getLong("last_activity_date");
+
+            if(toDate>lastActivityDate)
+                toDate = lastActivityDate;
+
+            Long activeBeforeL = (System.currentTimeMillis()/1000 - lastActivityDate)/60;
+            String activeBefore = "";
+            if(activeBeforeL!=0)
+             activeBefore = "active "+activeBeforeL +" mins ago";
+            else
+                activeBefore = "active now";
+            final String activeBeforeS = activeBefore;
+
+                    Log.d("ACTIVE_BEFORE",activeBefore);
+
+            Log.d("DATES", lastActivityDate+" "+toDate);
+            Log.d("DATES_STR", getDateFromEpoch(lastActivityDate)+" "+getDateFromEpoch(toDate));
 
             TextView questionTitleView = questionCard.findViewById(R.id.question_tile);
             questionTitleView.setText(Html.fromHtml(question.getString("title")));
 
             TextView viewCountView = questionCard.findViewById(R.id.view_count_view);
             viewCountView.setText(views+" views");
+
+            TextView activeBeforeView = questionCard.findViewById(R.id.active_before_view);
+            activeBeforeView.setText(activeBefore);
 
             TextView userNameView = questionCard.findViewById(R.id.user_name_view);
             userNameView.setText(userName);
@@ -154,6 +175,7 @@ public class MainActivity extends AppCompatActivity {
                 b.putString("avatar_url",avatarUrl);
 //                Log.d("QBODY",question_body);
                 b.putString("question_body",question_body);
+                b.putString("active_before",activeBeforeS);
                 i.putExtras(b);
                 startActivity(i);
                 }
@@ -210,10 +232,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String getUrl(){
-        String url ="http://api.stackexchange.com/2.2/questions?order=desc&sort=activity&site=stackoverflow&fromdate="+fromDate+"&todate="+toDate+"&filter=withbody";
-        toDate = fromDate;
-        fromDate = toDate - 24*60*60*1000;;
+        Log.d("URL_DATES",getDateFromEpoch(fromDate) +" "+getDateFromEpoch(toDate));
+        String url ="http://api.stackexchange.com/2.2/questions?order=desc&sort=activity&site=stackoverflow&max="+toDate+"&filter=withbody";
+//        toDate = fromDate;
+//        fromDate = toDate - 24*60*60;
+        Log.d("URL",url);
         return  url;
+    }
+
+    private String getDateFromEpoch(Long epoch){
+        Date date = new Date(epoch*1000);
+        return date.toString();
     }
 
 }

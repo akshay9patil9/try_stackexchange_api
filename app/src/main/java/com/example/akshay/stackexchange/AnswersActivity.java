@@ -39,6 +39,7 @@ public class AnswersActivity extends AppCompatActivity {
         String views = b.getString("views");
         String avatarUrl = b.getString("avatar_url");
         final String questionBody = b.getString("question_body");
+        final String activeBefore = b.getString("active_before");
 
 
         final LinearLayout answers_container = (LinearLayout)findViewById(R.id.answers_container);
@@ -51,6 +52,9 @@ public class AnswersActivity extends AppCompatActivity {
 
         TextView userNameView = questionCard.findViewById(R.id.user_name_view);
         userNameView.setText(userName);
+
+        TextView activeBeforeView = questionCard.findViewById(R.id.active_before_view);
+        activeBeforeView.setText(activeBefore);
 //
         TextView viewCountView = questionCard.findViewById(R.id.view_count_view);
         if(views == "1")

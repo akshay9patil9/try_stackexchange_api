@@ -65,6 +65,16 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/default_view_count"
+        android:textAlignment="textStart"
+        android:textSize="@dimen/count_size"
+        app:layout_constraintStart_toEndOf="@id/guideline_25"
+        app:layout_constraintTop_toBottomOf="@id/question_tile" />
+
+    <TextView
+        android:id="@+id/active_before_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text=""
         android:textAlignment="textEnd"
         android:textSize="@dimen/count_size"
         app:layout_constraintEnd_toEndOf="@id/guideline_95"
