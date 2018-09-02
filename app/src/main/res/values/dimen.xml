@@ -2,7 +2,9 @@
 <resources>
     <!--sides-->
     <dimen name="user_image_side">60dp</dimen>
+    <dimen name="detail_view_padding">12dp</dimen>
 
     <!--text sizes-->
     <dimen name="user_name_size">8sp</dimen>
+    <dimen name="count_size">12sp</dimen>
 </resources>

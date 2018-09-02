@@ -12,7 +12,7 @@
         <!--android:layout_height="match_parent"-->
         <!--&gt;-->
         <TextView
-            android:padding="10dp"
+            android:padding="@dimen/detail_view_padding"
             android:id="@+id/detail_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

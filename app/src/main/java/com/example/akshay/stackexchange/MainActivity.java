@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         final LinearLayout container = (LinearLayout)findViewById(R.id.questions_container);
 
         viewMore = new Button(this);
-        viewMore.setText("View More");
+        viewMore.setText(R.string.view_more);
 
         viewMore.setOnClickListener(new View.OnClickListener() {
             @Override
