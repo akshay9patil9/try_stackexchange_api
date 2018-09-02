@@ -5,52 +5,69 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="10dp"
-    android:padding="10dp"
+
     android:background="@drawable/question_card_bg"
 
     >
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.25"
+        />
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_95"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95"
+        />
 
     <TextView
         android:id="@+id/question_tile"
-        android:layout_width="195dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:maxLines="4"
         android:text="lorem ipsum"
         android:textAlignment="textStart"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:maxLines="4"
-        android:ellipsize="end"
-
-        app:layout_constraintStart_toEndOf="@id/avatar_view"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintEnd_toStartOf="@id/guideline_95"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/guideline_25"
         app:layout_constraintTop_toTopOf="@id/avatar_view" />
 
     <ImageView
         android:id="@+id/avatar_view"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="@dimen/user_image_side"
+        android:layout_height="@dimen/user_image_side"
         app:srcCompat="@mipmap/ic_launcher"
+        android:layout_marginRight="10dp"
         app:layout_constraintLeft_toLeftOf="parent"
         />
 
     <TextView
         android:id="@+id/user_name_view"
-        android:layout_width="100dp"
+        android:layout_width="@dimen/user_image_side"
         android:layout_height="wrap_content"
         android:text="user"
         android:textAlignment="center"
-        android:textSize="8sp"
+        android:textSize="@dimen/user_name_size"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="@id/avatar_view"
         app:layout_constraintTop_toBottomOf="@id/avatar_view" />
 
     <TextView
         android:id="@+id/view_count_view"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toRightOf="@id/avatar_view"
-        app:layout_constraintTop_toBottomOf="@id/question_tile"
+        android:text="0 views"
+        android:textAlignment="textEnd"
         android:textSize="12sp"
-        android:text="0"
-        />
+        app:layout_constraintWidth_default="wrap"
+        app:layout_constraintEnd_toEndOf="@id/guideline_95"
+        app:layout_constraintTop_toBottomOf="@id/question_tile" />
 </android.support.constraint.ConstraintLayout>

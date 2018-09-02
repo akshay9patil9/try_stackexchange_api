@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -51,17 +52,21 @@ public class AnswersActivity extends AppCompatActivity {
         userNameView.setText(userName);
 //
         TextView viewCountView = questionCard.findViewById(R.id.view_count_view);
-        viewCountView.setText(views+" views");
+        if(views == "1")
+            viewCountView.setText(views+" view");
+        else
+            viewCountView.setText(views+" views");
 //
         ImageView avatarView =  questionCard.findViewById(R.id.avatar_view);
         new ImageLoadTask(avatarUrl, avatarView).execute();
 
-        questionCard.setElevation(50);
-        questionCard.setBackgroundColor(0xFFFAFAFA);
+//        questionCard.setBackgroundColor(0xFFFAFAFA);
 
-        TextView questionT = new TextView(getApplicationContext());
-        questionT.setText("Question - ");
-        answers_container.addView(questionT);
+//        TextView questionT = new TextView(getApplicationContext());
+//        questionT.setText("Question - ");
+        Button questionSectionTitle = new Button(this);
+        questionSectionTitle.setText(R.string.question_header);
+        answers_container.addView(questionSectionTitle);
         questionCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -90,16 +95,13 @@ public class AnswersActivity extends AppCompatActivity {
                         try{
 
                             JSONArray answers = response.getJSONArray("items");
-                            if(answers.length()==0){
-                                TextView noAnswers = new TextView(getApplicationContext());
-                                noAnswers.setText("No Answers Found!");
-                                answers_container.addView(noAnswers);
-                            }
-                            else{
-                                TextView noAnswers = new TextView(getApplicationContext());
-                                noAnswers.setText("Answers - ");
-                                answers_container.addView(noAnswers);
-                            }
+                            Button answerSectionTitle = new Button(getApplicationContext());
+
+                            if(answers.length()==0)
+                                answerSectionTitle.setText(R.string.no_answers);
+                            else
+                                answerSectionTitle.setText(R.string.answer_header);
+                            answers_container.addView(answerSectionTitle);
 
 
                             for(int i =0; i< answers.length(); i++){

@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">StackExchange</string>
+    <string name="view_more">View More</string>
+    <string name="questions_header">Questions</string>
+    <string name="question_header">Question</string>
+    <string name="answer_header">Answers</string>
+    <string name="no_answers">No Answers Found!</string>
+
 </resources>
